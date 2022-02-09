@@ -31,7 +31,8 @@ def DetectLegitimateIp(ip_input,req_time,req_type):
         if dict_ips[ip_input]['count'] >=threshold_num:
             #print(float(req_time-dict_ips[ip_input]['Ftime']))
             if req_time-dict_ips[ip_input]['Ftime'] <threshold_time:
-                print('=====dos attack with ip : {}'.format(ip_input))
+                if ip_input != local_ip:
+                    print('=====dos attack with ip : {}'.format(ip_input))
                 #prevent function
                 if ip_input != local_ip and not (ip_input in dropped_array):
                     block_ip(ip_input)
